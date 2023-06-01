@@ -88,9 +88,11 @@ endif()
 
 include(CTest)
 
-configure_file("libcerf.pc.in" "libcerf.pc" @ONLY)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libcerf.pc"
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
+if(NOT MSVC)
+    configure_file("libcerf.pc.in" "libcerf.pc" @ONLY)
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libcerf.pc"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
+endif()
 
 add_subdirectory(lib)
 add_subdirectory(test)
